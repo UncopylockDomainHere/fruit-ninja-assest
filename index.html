@@ -1,0 +1,310 @@
+<html lang="en" style="height: 100%;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="manifest" href="./manifest.json">
+
+    <script src="//game-cdn.poki.com/scripts/v2/poki-sdk.js"></script><script src="https://game-cdn.poki.com/scripts/10f71b885fd72e594f0d192a6a3bfc0f54b8c395/poki-sdk-hoist-10f71b885fd72e594f0d192a6a3bfc0f54b8c395.js" type="text/javascript" crossorigin="anonymous"></script>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Fruit Ninja">
+    <meta name="apple-mobile-web-app-title" content="Fruit Ninja">
+    <meta name="msapplication-starturl" content="./">
+    <!-- <script type="text/javascript" src="https://storms.com/lib/h5Sdk/v1/h5Sdk.js"></script> -->
+
+    <title>Fruit Ninja</title>
+    <style>
+      @font-face {
+        font-family: gangofchinese;
+        src: url('assets/font/gangofchinese.ttf');
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100% !important;
+        margin: 0;
+        background-color: #000000 !important;
+      }
+
+      .fontLoader{
+          position: absolute;
+          left: -1000px;
+          visibility: hidden;
+      }
+
+      #phaser-canvas{
+          margin: 0 auto;
+          background-color: #000000;
+      }
+
+      body,#content{
+          height: 100vh !important;
+          max-height: 100vh !important;
+      }
+
+      #divAds, #tempads{
+          display: none;
+      }
+
+      /* canvas{
+          width: 100%;
+          height: 100%;
+          display: grid !important;
+          grid-area: 1/1;
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          padding: 0 !important;
+          max-width: 100% !important;
+          max-height: 100vh !important;
+      } */
+
+      #enable3d-three-canvas, #enable3d-phaser-canvas {
+          min-width: 100%;
+          max-width: 100%;
+          max-width: -webkit-fill-available;
+          max-width: -moz-available;
+          max-width: -webkit-fill-available;
+          max-width: fill-available;
+          margin: 0 auto;
+        }
+
+      /* @media screen and (max-width: 768px) {
+        #enable3d-three-canvas, #enable3d-phaser-canvas {
+          min-width: auto !important;
+          max-width: auto;
+          width: 960px;
+          height: auto;
+          margin: 0 auto;
+        }
+      } */
+
+      @media (min-aspect-ratio: 1.85) {
+        #enable3d-three-canvas, #enable3d-phaser-canvas {
+          width: 960px;
+          min-width: 640px;
+        }
+      }
+
+      @media (min-aspect-ratio: 8/4) {
+        #enable3d-three-canvas, #enable3d-phaser-canvas {
+          min-width: 640px;
+          /* background-color: aquamarine; */
+        }
+      }
+
+    </style>
+
+    <noscript>Please enable javascript to continue using this application.</noscript>
+
+    <!-- <script async
+        data-ad-client="ca-pub-6934234812187351"
+        data-ad-frequency-hint= "30s"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+    </script>
+    <script>window.adsbygoogle = window.adsbygoogle || [];
+        const adBreak =  adConfig = function(o) {adsbygoogle.push(o);}
+    </script> -->
+    <!-- installs the serviceWorker -->
+    <!-- <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+        })
+      }
+    </script> -->
+  <style>undefined</style><style>
+.m8FXBR {
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+}
+
+.m8FXBR.t_E9eW {
+	position: fixed;
+}
+
+.nAM_hf {
+	background: #000;
+	backdrop-filter: blur(10px);
+
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.qmpUYt {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.qmpUYt.qWB0AN {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	cursor: pointer;
+}
+
+.aPwh82 {
+	position: absolute;
+	z-index: 9999;
+	top: 0;
+
+	padding-top: 10%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #FFF;
+
+	font: 700 15pt 'Arial', sans-serif;
+	font-weight: bold;
+	letter-spacing: 1px;
+	transition: 0.1s ease-in-out;
+	line-height: 1em;
+
+	display: none;
+}
+
+.qQtYdx {
+    background: rgba(0, 43, 80, 0.5);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index: 11;
+}
+
+.PBq_cb {
+	cursor:pointer;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+.PBq_cb:hover .qQtYdx {
+		background: rgba(0, 43, 80, 0.7);
+	}
+
+.o_W9J9 {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 12;
+}
+
+.o_W9J9:before {
+		content: '';
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		display: block;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		        user-select: none;
+		background-color: rgba(0, 0, 0, 0.6);
+		transition: background-color 0.5s ease;
+		animation: 1s linear infinite vCajRE;
+		z-index: 12;
+	}
+
+.o_W9J9:after {
+		content: '';
+		position: absolute;
+		display: block;
+		box-sizing: border-box;
+		border-color: transparent transparent transparent #fff;
+		border-style: solid;
+		border-width: 26px 0 26px 40px;
+		pointer-events: none;
+		animation: 1s linear infinite vCajRE;
+		left: 6px;
+		z-index: 12;
+	}
+
+@keyframes vCajRE {
+	0% {
+		transform: translate(-50%, -50%) scale(0.95);
+	}
+	70% {
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(0.95);
+	}
+}
+
+.mRoqOt {
+	background: #B8C7DD;
+	width: 100%;
+	height: 5px;
+	position: absolute;
+	bottom: 0;
+	z-index: 9999;
+}
+
+._p4ryH {
+	position:relative;
+	bottom:0px;
+	background: #009CFF;
+	height: 100%;
+	width: 0%;
+	transition: width 0.5s;
+	transition-timing-function: linear;
+}
+
+.LI2Nug {
+	bottom: 10px;
+	position: absolute;
+	left: 10px;
+	z-index: 9999;
+	color: #FFF;
+	font: 700 9pt 'Arial', sans-serif;
+	filter: drop-shadow(0 0 0.2rem black);
+}
+
+.pkttBY {
+	display: block;
+	pointer-events: auto;
+}
+
+.pkttBY .nAM_hf {
+		opacity: 1;
+	}
+
+.Q94dIO {
+	display: none;
+	pointer-events: none;
+}
+</style><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="use-credentials"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa"><script async="" src="assets/ammo/ammo.wasm.js"></script><style><br>      #enable3d-phaser-canvas:focus,<br>      #enable3d-three-canvas:focus {<br>        outline: none;<br>      }<br><br>      #enable3d-three-canvas {<br>        position: absolute;<br>      }<br>    </style></head>
+  <body style="height: 100%;">
+    <div class="fontLoader" style="font-family: gangofchinese;">-</div>
+    <div class="fontLoader" style="font-family: gangofchinese;">-</div>
+    <div id="content">
+        <div id="phaser-canvas" style="overflow: hidden; width: 100%; height: 100%;"><canvas id="enable3d-three-canvas" width="1280" height="768" style="display: block; width: 600px; height: 360px; margin-left: 0px; margin-top: 0px;"></canvas><canvas id="enable3d-phaser-canvas" width="1280" height="768" style="width: 600px; height: 360px; margin-left: 0px; margin-top: 0px; position: relative;"></canvas></div>
+    </div>
+    <!-- <div id="phaser-game"></div> -->
+  <style id="injectStyles">html, body{ background: none !important; }</style>
+<script type="text/javascript" src="vendors.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+</body></html>
